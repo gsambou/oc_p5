@@ -2,11 +2,11 @@ import photographerFactory from '../factories/photographer.mjs';
 
 const DATA = '../../data/photographers.json';
 
-async function getData(url = '') {
+const getData = async (url = '') => {
 	const response = fetch(url);
 	const data = await response;
 	return data.json();
-}
+};
 
 async function getPhotographers() {
 	const { photographers } = await getData(DATA);
