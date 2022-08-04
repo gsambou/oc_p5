@@ -1,6 +1,8 @@
 function displayModal() {
-	const modal = document.querySelector('.contact_modal');
-	modal.addEventListener('click', (e) => {
+	const contact_btn = document.querySelector('.contact_button');
+
+	const modal = document.querySelector('#contact_modal');
+	contact_btn.addEventListener('click', (e) => {
 		e.preventDefault();
 		modal.style.display = 'block';
 	});
@@ -8,8 +10,7 @@ function displayModal() {
 
 function closeModal() {
 	const close_icon = document.querySelector('#close_icon');
-	console.log(close_icon);
-	const modal = document.querySelector('.contact_modal');
+	const modal = document.querySelector('#contact_modal');
 
 	close_icon.addEventListener('click', (e) => {
 		modal.style.display = 'none';

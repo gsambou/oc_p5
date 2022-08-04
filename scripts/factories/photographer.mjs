@@ -1,41 +1,37 @@
+const createElement = (element) => document.createElement(element);
+
+const appendElement = (parent, element) => {
+	parent.appendChild(element);
+};
+
+const appendChild = (parent, elements) => {
+	elements.forEach((element) => {
+		appendElement(parent, element);
+	});
+};
+
 export default function photographerFactory(data) {
 	const { name, portrait, city, country, price, tagline } = data;
 	const picture = `assets/photographers/${portrait}`;
 
-	const createElement = (element) => document.createElement(element);
-
-	const appendElement = (parent, element) => {
-		parent.appendChild(element);
-	};
 	const getHtmlElements = () => {
 		const article = createElement('article');
 		const img = createElement('img');
-
 		const h2 = createElement('h2');
-		const loc = createElement('p');
+		const localisation = createElement('p');
 		const tag = createElement('p');
 		const priceNumber = createElement('p');
 
-		loc.classList.add('location');
-		loc.textContent = `${city}, ${country}`;
-
+		localisation.classList.add('location');
+		localisation.textContent = `${city}, ${country}`;
 		tag.classList.add('tagline');
 		tag.textContent = `${tagline}`;
-
 		priceNumber.classList.add('price');
 		priceNumber.textContent = `${price}€/jour`;
-
 		img.setAttribute('src', picture);
-
 		h2.textContent = name;
 
-		return [article, img, h2, loc, tag, priceNumber];
-	};
-
-	const appendChild = (parent, elements) => {
-		elements.forEach((element) => {
-			parent.appendChild(element);
-		});
+		return [article, img, h2, localisation, tag, priceNumber];
 	};
 
 	function getUserCardDOM() {
@@ -44,9 +40,7 @@ export default function photographerFactory(data) {
 		vignette.setAttribute('href', '../../photographer.html');
 		vignette.setAttribute('alt', 'photographe profil');
 		appendElement(vignette, image);
-
 		elements.unshift(vignette);
-		console.log(vignette);
 		appendChild(article, elements);
 		return article;
 	}
