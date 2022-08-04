@@ -1,4 +1,5 @@
 import photographerFactory from '../factories/photographer.mjs';
+import { vignetteEvent } from './photographer.mjs';
 import { getData } from '../utils/data.mjs';
 
 const DATA = '../../data/photographers.json';
@@ -24,8 +25,8 @@ async function displayData(photographers) {
 async function init() {
 	// Récupère les datas des photographes
 	const { photographers } = await getPhotographers();
-	console.log(photographers);
 	displayData(photographers);
+	vignetteEvent();
 }
 
 export default init;

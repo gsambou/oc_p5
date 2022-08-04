@@ -29,6 +29,7 @@ export default function photographerFactory(data) {
 		priceNumber.classList.add('price');
 		priceNumber.textContent = `${price}€/jour`;
 		img.setAttribute('src', picture);
+		img.classList.add('vignette');
 		h2.textContent = name;
 
 		return [article, img, h2, localisation, tag, priceNumber];
@@ -38,7 +39,7 @@ export default function photographerFactory(data) {
 		const [article, image, ...elements] = getHtmlElements();
 		const vignette = createElement('a');
 		vignette.setAttribute('href', '../../photographer.html');
-		vignette.setAttribute('alt', 'photographe profil');
+		vignette.setAttribute('alt', 'photograph profil');
 		appendElement(vignette, image);
 		elements.unshift(vignette);
 		appendChild(article, elements);

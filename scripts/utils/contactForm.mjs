@@ -1,6 +1,5 @@
 function displayModal() {
 	const contact_btn = document.querySelector('.contact_button');
-
 	const modal = document.querySelector('#contact_modal');
 	contact_btn.addEventListener('click', (e) => {
 		e.preventDefault();
