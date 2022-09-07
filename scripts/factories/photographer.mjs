@@ -11,7 +11,7 @@ const appendChild = (parent, elements) => {
 };
 
 export default function photographerFactory(data) {
-	const { name, portrait, city, country, price, tagline } = data;
+	const { id, name, portrait, city, country, price, tagline } = data;
 	const picture = `assets/photographers/${portrait}`;
 
 	const getHtmlElements = () => {
@@ -38,7 +38,8 @@ export default function photographerFactory(data) {
 	function getUserCardDOM() {
 		const [article, image, ...elements] = getHtmlElements();
 		const vignette = createElement('a');
-		vignette.setAttribute('href', '../../photographer.html');
+		vignette.setAttribute('href', `../../photographer.html?id=${id}`);
+
 		vignette.setAttribute('alt', 'photograph profil');
 		appendElement(vignette, image);
 		elements.unshift(vignette);

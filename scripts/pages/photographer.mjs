@@ -5,44 +5,29 @@ const DATA = '../../data/photographers.json';
 
 const { photographers, media } = await getData(DATA);
 
-console.log(photographers);
-console.log(media);
+const getId = () => {
+	return Number(window.location.href.split('=')[1]);
+};
 
-function find(items, predicate) {
-	const data = [];
-	return items.reduce((acc, item, index, array) => {
-		if (acc !== undefined) {
-			// console.log(acc);
-			return acc;
-		}
-		if (predicate(item, index, array)) {
-			return item;
-		}
+const photographMedia = (photographID) => media.filter((d) => d.photographerId === photographID);
+const photographData = (photographID) => photographers.filter((d) => d.id === photographID);
 
-		return acc;
-	}, undefined);
-}
-
-// photographers.forEach((photograph) => {
-// 	find(media, (m) => m.photographerId === photograph.id);
-// });
-
-// const data = find(media, (m) => m.photographerId === 925);
-// console.log(data);
-
-// let photographTest = (photograh, index, array) => photograh.photographerId === 925;
-
-// filter
-
-const photograhData = (photographID) => media.filter((d) => d.photographerId === photographID);
-
-const res = photograhData(243);
+const res = photographData(getId());
+console.log(Object.assign({}, res[0]));
 
 export const vignetteEvent = () => {
 	const vignette = document.querySelector('.vignette');
 
 	vignette.addEventListener('click', (e) => {
-		console.log('clicked');
+		console.log(vignette);
 		console.log(res);
 	});
 };
+
+export const generateHeader = () => {
+	const photographHeader = document.querySelector('.photograph-header');
+
+	console.log(photographHeader);
+};
+
+generateHeader();
