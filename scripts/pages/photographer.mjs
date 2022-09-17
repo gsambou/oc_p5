@@ -1,28 +1,25 @@
-import { getData } from '../utils/data.mjs';
+import { getData } from '../utils/dataProcess.mjs';
 import { createElement, appendElement } from '../factories/photographer.mjs';
-//Mettre le code JavaScript lié à la page photographer.html
 
 const DATA = '../../data/photographers.json';
 
 const { photographers, media } = await getData(DATA);
 
+// Recupère l'id via l'url
 const getId = () => {
 	return Number(window.location.href.split('=')[1]);
 };
 
 const photographMedia = (photographID) => media.filter((d) => d.photographerId === photographID);
-const photographData = (photographID) => photographers.filter((d) => d.id === photographID);
+export const photographData = (photographID) => photographers.filter((d) => d.id === photographID);
 
-// BUG: undefined resultat on index page => to fix;
 const sanitizeData = (data) => {
 	const copy_data = data[0];
 	const { name, city, country, tagline, portrait } = copy_data;
 	return { name, city, country, tagline, portrait };
 };
 
-// sanitizeData(photographData(getId()));
-
-const displayBadge = (photographInfo) => {
+const displayBadge = (photographInfo = {}) => {
 	const data = sanitizeData(photographInfo);
 	try {
 		console.log(data);
@@ -62,20 +59,4 @@ const displayBadge = (photographInfo) => {
 	}
 };
 
-const photographInfo = photographData(getId());
-
-export const vignetteEvent = () => {
-	const vignette = document.querySelector('.vignette');
-	if (vignette) {
-		console.log(vignette);
-		vignette.addEventListener('click', (e) => {
-			console.log('hello world');
-			generateHeader();
-		});
-	}
-};
-
-export const generateHeader = () => {
-	displayBadge(photographInfo);
-};
-vignetteEvent();
+displayBadge(photographData(getId()));

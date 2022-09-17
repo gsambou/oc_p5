@@ -1,21 +1,19 @@
+/*
+Create element factory
+*/
+
 export const createElement = (element) => document.createElement(element);
-
 export const appendElement = (parent, element) => {
-	parent.appendChild(element);
+	parent.append(element);
 };
 
-export const appendChild = (parent, elements) => {
-	elements.forEach((element) => {
-		appendElement(parent, element);
-	});
-};
-
-export default function photographerFactory(data) {
+export const photographerFactory = (data) => {
 	const { id, name, portrait, city, country, price, tagline } = data;
 	const picture = `assets/photographers/${portrait}`;
 
-	const getHtmlElements = () => {
+	const generateElements = () => {
 		const article = createElement('article');
+		const vignette = createElement('a');
 		const img = createElement('img');
 		const h2 = createElement('h2');
 		const localisation = createElement('p');
@@ -32,20 +30,30 @@ export default function photographerFactory(data) {
 		img.classList.add('vignette');
 		h2.textContent = name;
 
-		return [article, img, h2, localisation, tag, priceNumber];
-	};
-
-	function getUserCardDOM() {
-		const [article, image, ...elements] = getHtmlElements();
-		const vignette = createElement('a');
 		vignette.setAttribute('href', `../../photographer.html?id=${id}`);
-
 		vignette.setAttribute('alt', 'photograph profil');
-		appendElement(vignette, image);
-		elements.unshift(vignette);
-		appendChild(article, elements);
+		appendElement(vignette, img);
+		console.log(vignette);
 
+		return { id, article, vignette, h2, localisation, tag, priceNumber };
+	};
+	function getUserCardDOM() {
+		const { id, article, vignette, h2, localisation, tag, priceNumber } = generateElements();
+
+		appendElement(article, vignette);
+		appendElement(article, h2);
+		appendElement(article, localisation);
+		appendElement(article, tag);
+		appendElement(article, priceNumber);
+
+		/*
+		 ** redirect on photograph profil at click
+		 */
+		article.addEventListener('click', (e) => {
+			e.preventDefault();
+			window.location.href = `${location.href}photographer.html?id=${id}`;
+		});
 		return article;
 	}
-	return { name, picture, city, country, price, tagline, getUserCardDOM };
-}
+	return { name, picture, getUserCardDOM };
+};

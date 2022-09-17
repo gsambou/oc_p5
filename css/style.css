@@ -47,3 +47,11 @@ h1 {
 	height: 200px;
 	width: 200px;
 }
+
+/*  my custom css  */
+
+.vignette {
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+}
