@@ -1,10 +1,10 @@
-const createElement = (element) => document.createElement(element);
+export const createElement = (element) => document.createElement(element);
 
-const appendElement = (parent, element) => {
+export const appendElement = (parent, element) => {
 	parent.appendChild(element);
 };
 
-const appendChild = (parent, elements) => {
+export const appendChild = (parent, elements) => {
 	elements.forEach((element) => {
 		appendElement(parent, element);
 	});
@@ -44,6 +44,7 @@ export default function photographerFactory(data) {
 		appendElement(vignette, image);
 		elements.unshift(vignette);
 		appendChild(article, elements);
+
 		return article;
 	}
 	return { name, picture, city, country, price, tagline, getUserCardDOM };

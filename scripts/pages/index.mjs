@@ -1,5 +1,5 @@
 import photographerFactory from '../factories/photographer.mjs';
-import { vignetteEvent } from './photographer.mjs';
+import { vignetteEvent, generateHeader } from './photographer.mjs';
 import { getData } from '../utils/data.mjs';
 
 const DATA = '../../data/photographers.json';
