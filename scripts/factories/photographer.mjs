@@ -7,6 +7,13 @@ export const appendElement = (parent, element) => {
 	parent.append(element);
 };
 
+const redirectPage = (element, id) => {
+	element.addEventListener('click', (e) => {
+		e.preventDefault();
+		window.location.href = `${location.href}photographer.html?id=${id}`;
+	});
+};
+
 export const photographerFactory = (data) => {
 	const { id, name, portrait, city, country, price, tagline } = data;
 	const picture = `assets/photographers/${portrait}`;
@@ -49,10 +56,11 @@ export const photographerFactory = (data) => {
 		/*
 		 ** redirect on photograph profil at click
 		 */
-		article.addEventListener('click', (e) => {
-			e.preventDefault();
-			window.location.href = `${location.href}photographer.html?id=${id}`;
-		});
+		// article.addEventListener('click', (e) => {
+		// 	e.preventDefault();
+		// 	window.location.href = `${location.href}photographer.html?id=${id}`;
+		// });
+		redirectPage(article, id);
 		return article;
 	}
 	return { name, picture, getUserCardDOM };
