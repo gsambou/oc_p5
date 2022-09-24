@@ -1,11 +1,5 @@
 import { photographerFactory } from '../factories/photographer.mjs';
-import { getData } from '../utils/dataProcess.mjs';
-
-/*
- Photographer constant DATA
- */
-
-const DATA = '../../data/photographers.json';
+import { getData, DATA, appendElement, querySelector } from '../utils/index.mjs';
 
 /*
  GetPhotographers DATA
@@ -28,18 +22,17 @@ const displayPhoto = (photographer) => {
 	const userCardDOM = photographerModel.getUserCardDOM();
 	return userCardDOM;
 };
+
 /*
  Display fetched Data from getPhotographers function
  in DOM
  */
-
 async function displayData(photographers) {
-	const photographersSection = document.querySelector('.photographer_section');
+	const photographersSection = querySelector('.photographer_section');
 
 	photographers.forEach((photographer) => {
 		const userCardDOM = displayPhoto(photographer);
-		// console.log(userCardDOM);
-		photographersSection.appendChild(userCardDOM);
+		appendElement(photographersSection, userCardDOM);
 	});
 }
 

@@ -55,3 +55,12 @@ h1 {
 	height: 200px;
 	border-radius: 50%;
 }
+
+.location {
+	color: #901c1c;
+	font-size: 14px;
+}
+
+.price {
+	color: #757575;
+}

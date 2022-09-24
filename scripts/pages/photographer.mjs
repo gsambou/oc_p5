@@ -1,14 +1,15 @@
-import { getData } from '../utils/dataProcess.mjs';
-import { createElement, appendElement } from '../factories/photographer.mjs';
-
-const DATA = '../../data/photographers.json';
+import {
+	getId,
+	createElement,
+	appendElement,
+	setElement,
+	setAttribute,
+	querySelector,
+	getData,
+	DATA,
+} from '../utils/index.mjs';
 
 const { photographers, media } = await getData(DATA);
-
-// Recupère l'id via l'url
-const getId = () => {
-	return Number(window.location.href.split('=')[1]);
-};
 
 const photographMedia = (photographID) => media.filter((d) => d.photographerId === photographID);
 export const photographData = (photographID) => photographers.filter((d) => d.id === photographID);
@@ -19,44 +20,51 @@ const sanitizeData = (data) => {
 	return { name, city, country, tagline, portrait };
 };
 
-const displayBadge = (photographInfo = {}) => {
+const createElements = () => {
+	const title = createElement('div');
+	const title_name = createElement('h1');
+	const title_location = createElement('p');
+	const title_tagline = createElement('p');
+	const profil = createElement('div');
+	const profil_img = createElement('img');
+	return { title, title_name, title_location, title_tagline, profil, profil_img };
+};
+
+const displayHeader = (photographInfo = {}) => {
 	const data = sanitizeData(photographInfo);
 	try {
-		console.log(data);
-		const parent = document.querySelector('.photograph-header');
-		const title = createElement('div');
-		console.log(title);
-		title.classList.add('title');
-		parent.prepend(title);
+		const parent = querySelector('.photograph-header');
+		const { title, title_name, title_location, title_tagline, profil, profil_img } = createElements();
+		const picture = `assets/photographers/${data.portrait}`;
 
-		const title_name = createElement('h1');
-		title_name.classList.add('name');
-		title_name.style.color = '#d3573c';
-		title_name.textContent = data.name;
-		title.prepend(title_name);
+		setElement(parent, title, 'title');
+		setElement(title, title_name, 'name', data.name, '#d3573c');
+		setElement(title, title_location, 'location', `${data.city}, ${data.country}`, '', false);
+		setElement(title, title_tagline, 'tagline', data.tagline, '', false);
 
-		const title_location = createElement('p');
-		title_location.classList.add('location');
-		title_location.textContent = `${data.city},${data.country}`;
-		title.appendChild(title_location);
-
-		const title_tagline = createElement('p');
-		title_tagline.classList.add('tagline');
-		title_tagline.textContent = data.tagline;
-		title.appendChild(title_tagline);
-
-		const profil = createElement('div');
 		profil.classList.add('profil');
 		appendElement(parent, profil);
-
-		const picture = `assets/photographers/${data.portrait}`;
-		const profil_img = createElement('img');
-
-		profil_img.setAttribute('src', picture);
+		setAttribute(profil_img, 'src', picture);
 		appendElement(profil, profil_img);
 	} catch (error) {
 		console.log(error);
 	}
 };
 
-displayBadge(photographData(getId()));
+displayHeader(photographData(getId()));
+
+// const main = querySelector('#main');
+
+// const photographer_section = document.createElement('section');
+// photographer_section.classList.add('photographer_section');
+
+// main.appendChild(photographer_section);
+
+// const photographer_article = document.createElement('article');
+// photographer_section.appendChild(photographer_article);
+
+// const photographer_article_h2 = document.createElement('h2');
+// photographer_article_h2.textContent = 'Hello Test';
+// photographer_article.appendChild(photographer_article_h2);
+
+console.log(photographMedia(getId()));

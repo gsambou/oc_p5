@@ -1,21 +1,4 @@
-/*
-Create element factory
-*/
-
-export const createElement = (element) => document.createElement(element);
-export const appendElement = (parent, element) => {
-	parent.append(element);
-};
-
-/*
- Append all Created Elements to the DOM
- */
-
-const appendElements = (parent, elements) => {
-	elements.forEach((element) => {
-		parent.append(element);
-	});
-};
+import { createElement, appendElement, appendElements, setAttribute, setElementProperties } from '../utils/dom.mjs';
 
 const createElements = () => {
 	const article = createElement('article');
@@ -27,25 +10,6 @@ const createElements = () => {
 	const priceNumber = createElement('p');
 
 	return { article, vignette, img, h2, localisation, tag, priceNumber };
-};
-
-/*
-set textContent and className to element
-*/
-const setElementProperties = (element, className = '', textContent = '') => {
-	if (className) {
-		element.classList.add(className);
-	}
-	if (textContent) {
-		element.textContent = textContent;
-	}
-};
-
-/*
- * setAttribute of html Element
- */
-const setAttribute = (element, attribute, value = '') => {
-	element.setAttribute(attribute, value);
 };
 
 const redirectPage = (element, id) => {
@@ -80,11 +44,8 @@ export const photographerFactory = (data) => {
 		const [id, article, ...domElements] = data;
 
 		appendElements(article, domElements);
-
-		/*
-		 ** redirect on photograph profil at click
-		 */
 		redirectPage(article, id);
+
 		return article;
 	}
 	return { name, picture, getUserCardDOM };
