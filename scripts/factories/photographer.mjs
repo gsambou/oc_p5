@@ -12,12 +12,12 @@ const createElements = () => {
 	return { article, vignette, img, h2, localisation, tag, priceNumber };
 };
 
-const redirectPage = (element, id) => {
-	element.addEventListener('click', (e) => {
-		e.preventDefault();
-		window.location.href = `${location.href}photographer.html?id=${id}`;
-	});
-};
+// const redirectPage = (element, id) => {
+// 	element.addEventListener('click', (e) => {
+// 		e.preventDefault();
+// 		window.location.href = `${location.href}photographer.html?id=${id}`;
+// 	});
+// };
 
 export const photographerFactory = (data) => {
 	const { id, name, portrait, city, country, price, tagline } = data;
@@ -44,7 +44,7 @@ export const photographerFactory = (data) => {
 		const [id, article, ...domElements] = data;
 
 		appendElements(article, domElements);
-		redirectPage(article, id);
+		// redirectPage(article, id);
 
 		return article;
 	}

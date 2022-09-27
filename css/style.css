@@ -54,6 +54,7 @@ h1 {
 	width: 200px;
 	height: 200px;
 	border-radius: 50%;
+	object-fit: cover;
 }
 
 .location {
@@ -63,4 +64,38 @@ h1 {
 
 .price {
 	color: #757575;
+}
+
+/*  Media styling  */
+.img_card_parent {
+	margin: 0 100px;
+	margin-top: 64px;
+}
+.photographer_img {
+	width: 350px;
+	height: 300px;
+	border-radius: 5px;
+	object-fit: cover;
+}
+.media-list {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.textContainer {
+	display: flex;
+	justify-content: space-between;
+}
+
+.like_numbers {
+	display: flex;
+	align-items: center;
+}
+
+.like_numbers span:first-child {
+	margin-right: 8px;
+}
+
+.heart {
+	cursor: pointer;
 }
