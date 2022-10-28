@@ -90,3 +90,42 @@ form input {
 	border-radius: 50%;
 	object-fit: cover;
 }
+
+/* Carrousel */
+main {
+	position: relative;
+}
+.carroussel {
+	display: none;
+	width: 1253px;
+	height: 984px;
+	background-color: rosybrown;
+	/* Center vertically and horizontally */
+	position: absolute;
+	top: 20%;
+	left: 20%;
+	margin: -25px 0 0 -25px;
+}
+.slider {
+	width: 1050px;
+	height: 900px;
+	background-color: aquamarine;
+	position: relative;
+	top: 32px;
+	left: 100px;
+}
+
+.left-arrow {
+	position: relative;
+	bottom: -450px;
+}
+
+.right-arrow {
+	position: absolute;
+	right: 0px;
+	bottom: 450px;
+}
+.close-slider-icon {
+	position: absolute;
+	right: 0px;
+}

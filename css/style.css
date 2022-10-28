@@ -96,6 +96,7 @@ h1 {
 	margin-right: 8px;
 }
 
-.heart {
+.heart,
+.photographer_img {
 	cursor: pointer;
 }

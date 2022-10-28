@@ -112,3 +112,15 @@ const getMediaInfo = () => {
 };
 
 getMediaInfo();
+
+const phototest = document.querySelectorAll('.photographer_img');
+
+if (phototest) {
+	Array.from(phototest).forEach((photo) => {
+		photo.addEventListener('click', (e) => {
+			console.log(photo);
+		});
+	});
+} else {
+	console.log('wrong click');
+}
