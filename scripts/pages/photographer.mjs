@@ -118,9 +118,53 @@ const phototest = document.querySelectorAll('.photographer_img');
 if (phototest) {
 	Array.from(phototest).forEach((photo) => {
 		photo.addEventListener('click', (e) => {
-			console.log(photo);
+			e.preventDefault();
+			const carroussel = document.querySelector('.carroussel');
+			carroussel.style.display = 'block';
+
+			const slider = document.querySelector('.slider');
+			const slider_image = document.createElement('li');
+			slider_image.classList.add('slider_image');
+			const slider_content = document.createElement('ul');
+			slider_content.classList.add('slider_list_content');
+			slider.append(slider_content);
+
+			const mymedia = photographMedia(getId());
+			// const picture = `assets/medias/${mymedia[0].image}`;
+			//   const picture = `assets/medias/${data.image ? data.image : data.video}`;
+
+			mymedia.forEach((m) => {
+				const picture = `assets/medias/${m.image ? m.image : m.video}`;
+				// const picture = `assets/medias/${m.image}`;
+				const li = document.createElement('li');
+				li.classList.add('slider_content_image');
+				const imgCard = document.createElement('img');
+				li.append(imgCard);
+				imgCard.classList.add('photographer_slider_image');
+				setAttribute(imgCard, 'src', picture);
+				slider_content.append(li);
+			});
 		});
 	});
 } else {
 	console.log('wrong click');
 }
+
+const slider_left_arrow = document.querySelector('.left-arrow');
+const slider_right_arrow = document.querySelector('.right-arrow');
+
+slider_right_arrow.addEventListener('click', (e) => {
+	e.preventDefault();
+	console.log('clicked right');
+	const slider_content_list = document.querySelector('.slider_list_content');
+
+	slider_content_list.style.right = `{1050 * 2}px`;
+});
+
+slider_left_arrow.addEventListener('click', (e) => {
+	e.preventDefault();
+	console.log('clicked left');
+	const slider_content_list = document.querySelector('.slider_list_content');
+
+	slider_content_list.style.left = `-1050px`;
+});

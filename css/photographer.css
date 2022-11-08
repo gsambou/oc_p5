@@ -93,7 +93,6 @@ form input {
 
 /* Carrousel */
 main {
-	position: relative;
 }
 .carroussel {
 	display: none;
@@ -113,6 +112,7 @@ main {
 	position: relative;
 	top: 32px;
 	left: 100px;
+	overflow: hidden;
 }
 
 .left-arrow {
@@ -128,4 +128,24 @@ main {
 .close-slider-icon {
 	position: absolute;
 	right: 0px;
+}
+
+/* image slider  */
+.slider_list_content {
+	position: relative;
+	display: flex;
+
+	padding-inline-start: 0px;
+	/* left: -1050px; */
+}
+.slider_content_image {
+	/* position: relative; */
+	width: 1050px;
+	height: 900px;
+}
+.photographer_slider_image {
+	width: 1050px;
+	height: 900px;
+	object-fit: cover;
+	object-position: center center;
 }
